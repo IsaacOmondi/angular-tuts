@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  post = {
+    title: "Title",
+    isFavorite:true
+  }
+
+  onFavoriteChanged(){
+    console.log("Changed");
+  }
 }
