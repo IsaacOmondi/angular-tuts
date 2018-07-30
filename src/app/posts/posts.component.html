@@ -1,0 +1,7 @@
+<input 
+  (keyup.enter)="createPost(title)" #title
+  type="text" style="width: 100%">
+
+<ul class="list-group">
+  <li *ngFor="let post of posts">{{ post.title }}</li>
+</ul>

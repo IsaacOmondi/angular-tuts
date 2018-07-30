@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 
-@Injectable() 
+@Injectable()
 
 export class DataService {
 
