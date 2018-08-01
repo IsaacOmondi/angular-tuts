@@ -13,6 +13,8 @@ import { DataService } from './data.service';
 import { CoursesComponent } from './courses/courses.component';
 import { PostsComponent } from './posts/posts.component';
 
+import { PostService } from './services/posts/post.service';
+
 
 
 @NgModule({
@@ -30,7 +32,7 @@ import { PostsComponent } from './posts/posts.component';
     BrowserAnimationsModule,
     HttpModule
   ],
-  providers: [DataService],
+  providers: [DataService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,5 @@
+import { PostService } from './../services/posts/post.service';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { Body } from '@angular/http/src/body';
-import { toUnicode } from 'punycode';
 
 @Component({
   selector: 'app-posts',
@@ -10,8 +8,7 @@ import { toUnicode } from 'punycode';
 })
 export class PostsComponent implements OnInit {
   posts: any[];
-  private url = 'http://jsonplaceholder.typicode.com/posts';
-  constructor(private http: Http) {
+  constructor(private postService: PostService) {
 
   }
   // Create Data
@@ -19,24 +16,24 @@ export class PostsComponent implements OnInit {
     let post = { title: input.value };
     input.value = '';
 
-    this.http.post(this.url, JSON.stringify(post))
-      .subscribe(response => {
-        post['id'] = response.json().id;
-        this.posts.splice(0, 0, post);
-        console.log(response.json());
-      });
+    this.postService.createPost(input)
+    .subscribe(response => {
+      post['id'] = response.json().id;
+      this.posts.splice(0, 0, post);
+      console.log(response.json());
+    });
   }
 
   updatePost(post) {
-    this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
+    this.postService.updatePost(post)
       .subscribe(response => {
         console.log(response.json());
       });
   }
 
   deletePost(post) {
-    this.http.delete(this.url + '/' + post.id)
-      .subscribe(response => {
+  this.postService.deletePost(post.id)
+    .subscribe(response => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index , 1);
       })
@@ -44,7 +41,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     // Get Data
-    this.http.get(this.url)
+    this.postService.getPosts()
       .subscribe(response => {
         this.posts = response.json();
       });
