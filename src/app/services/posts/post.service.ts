@@ -1,13 +1,11 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 
 export class PostService {
-  private url = 'http://jsonplaceholder.typicode.com/posts';
+  private url = 'http://aaasjsonplaceholder.typicode.com/posts';
   
   getPosts() {
     return this.http.get(this.url);

@@ -23,7 +23,8 @@ import { PostService } from './services/posts/post.service';
     AboutComponent,
     HomeComponent,
     CoursesComponent,
-    PostsComponent
+    PostsComponent,
+    
   ],
   imports: [
     BrowserModule,
