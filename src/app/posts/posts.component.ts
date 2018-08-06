@@ -1,6 +1,8 @@
+import { AppError } from './../common/validators/app-error';
+import { BadRequestError } from './../common/validators/bad-request-error';
 import { PostService } from './../services/posts/post.service';
 import { Component, OnInit } from '@angular/core';
-
+import { NotFoundError } from '../common/validators/not-found-error';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -23,8 +25,8 @@ export class PostsComponent implements OnInit {
           this.posts.splice(0, 0, post);
           console.log(response.json());
         },
-        (error: Response) => {
-          if (error.status === 400) {
+        (error: AppError) => {
+          if (error instanceof BadRequestError) {
             alert('');
           } else {
             alert('An unexpected error occured');
@@ -52,8 +54,8 @@ export class PostsComponent implements OnInit {
           let index = this.posts.indexOf(post);
           this.posts.splice(index, 1);
         },
-        (error: Response) => {
-          if (error.status === 404) {
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
             alert('This post has already been deleted');
           }
           else {
