@@ -1,3 +1,5 @@
+import { AppErrorHandler } from './common/validators/app-error-handler';
+import { ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +35,10 @@ import { PostService } from './services/posts/post.service';
     BrowserAnimationsModule,
     HttpModule
   ],
-  providers: [DataService, PostService],
+  providers: [
+    DataService, 
+    PostService, 
+  {provide: ErrorHandler, useClass: AppErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
